@@ -673,7 +673,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+         clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -684,7 +684,22 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        --
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pyflakes = {enabled=false},
+                pycodestyle = {enabled=false},
+                autopep8 = {enabled=false},
+                yapf = {enabled=false},
+                mccabe = {enabled=false},
+                pylsp_mypy = {enabled = false},
+                pylsp_black = {enabled = false},
+                pylsp_isort = {enabled = false},
+              },
+            },
+          },
+        },
 
         lua_ls = {
           -- cmd = { ... },
@@ -905,7 +920,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc','java' },
+      ensure_installed = {'python', 'bash', 'c','cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc','java' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
